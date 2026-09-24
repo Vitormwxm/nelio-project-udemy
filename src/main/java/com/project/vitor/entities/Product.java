@@ -53,6 +53,7 @@ public class Product {
         for (OrderItem x : items) {
             set.add(x.getOrder());
         }
+        return set;
     }
 
     public Long getId() {
