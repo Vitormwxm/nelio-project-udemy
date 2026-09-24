@@ -31,6 +31,10 @@ public class Product {
     )
     private Set<Category> categories = new HashSet<>();
 
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product() {
     }
 
@@ -40,6 +44,15 @@ public class Product {
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOders() {
+        Set<Order> set = new HashSet<>();
+
+        for (OrderItem x : items) {
+            set.add(x.getOrder());
+        }
     }
 
     public Long getId() {
